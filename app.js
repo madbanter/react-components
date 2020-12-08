@@ -36,9 +36,53 @@
 
 ////////////
 ////////////
-var GroceryListItem = (props) => (
-  <li>{props.listItem}</li>
-);
+// var GroceryListItem = (props) => (
+//   <li>{props.listItem}</li>
+// );
+
+// var GroceryList = (props) => (
+//   <ul>
+//     {
+//       props.listItems.map((i, index) => <GroceryListItem listItem={i} />)
+//     }
+//   </ul>
+// );
+
+// // render it
+// ReactDOM.render(<GroceryList listItems={['coffee', 'cigarettes', 'bread']} />, document.getElementById("app"));
+
+////////////
+////////////
+// var GroceryListItem = (props) => (
+//   <li>{props.listItem}</li>
+// );
+
+class GroceryListItem extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hover: false
+    }
+  }
+
+  onListItemHover() {
+    this.setState({
+      hover: !this.state.hover
+    })
+  }
+
+  render() {
+    let style = {
+      fontWeight: this.state.hover ? 'bold' : 'normal'
+    }
+
+    return (
+      <li style={style} onMouseEnter={this.onListItemHover.bind(this)} onMouseLeave={this.onListItemHover.bind(this)}>{this.props.listItem}</li>
+    )
+  }
+
+}
 
 var GroceryList = (props) => (
   <ul>
